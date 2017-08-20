@@ -17,44 +17,37 @@ The Final Video is given below:
 
 [![IMAGE ALT TEXT](http://img.youtube.com/vi/k3ullb36rHM/0.jpg)](https://youtu.be/k3ullb36rHM)  
 
-[//]: # (Image References)
 
-![img_normal](https://ibb.co/c2CU45)
-[(https://ibb.co/hYOrHQ?raw=true)]
-[(https://ibb.co/hDAtWk?raw=true)]
-[(https://ibb.co/iBxU45?raw=true)]
-[(https://ibb.co/hOGNP5?raw=true)]
-[(https://ibb.co/f91p45?raw=true)]
+![img_normal](https://image.ibb.co/kO82P5/Undistorted_Image.png)
+![img_normal](https://image.ibb.co/mt0hP5/after_persp.png)
+![img_normal](https://image.ibb.co/jiRYWk/before_persp.png)
+![img_normal](https://image.ibb.co/kBd2P5/binarize.png)
+![img_normal](https://image.ibb.co/cw7kcQ/output_7.png)
+![img_normal](https://image.ibb.co/bMc7rk/sliding.png)
 
+### Camera Calibration and Undistorting
 
-### Camera Calibration
+This step is for converting the distorted images of camera into undistorted original images. For this, we first calibrate the camera matrix using chessboard images and use the calculated matrices for obtaining undistorted imageds.
 
-The code for this step is contained in the "**Camera Calibration**" code cell of the IPython notebook `Advanced Lane Detection.ipynb`
+The undistortion requires object points and images. Image points are taken from detected corners whereas object points are selected as 3x3 grid. These values are then passed to cv2.calibrateCamera() for obtaining calibration matrix. Then, the parameters obtained from the function were fed into cv2.undistort() function for undistorting images. The values of camera calibration were stored in a pickle file to prevent processing of them everytime.
 
-I start by preparing "object points", which will be the (x, y, z) coordinates of the chessboard corners in the world. Here I am assuming the chessboard is fixed on the (x, y) plane at z=0, such that the object points are the same for each calibration image.  Thus, `objp` is just a replicated array of coordinates, and `objpoints` will be appended with a copy of it every time I successfully detect all chessboard corners in a test image.  `imgpoints` will be appended with the (x, y) pixel position of each of the corners in the image plane with each successful chessboard detection.  
+This image is before it is undistorted
+![img_normal](https://image.ibb.co/jiRYWk/before_persp.png)
 
-I then used the output `objpoints` and `imgpoints` to compute the camera calibration and distortion coefficients using the `cv2.calibrateCamera()` function.  I applied this distortion correction to the test image using the `cv2.undistort()` function and obtained this result:
+After undistorting, the output is:
+![img_normal](https://image.ibb.co/kO82P5/Undistorted_Image.png)
 
-![alt text][image1]
+Notice that the difference is less and is observed only at left and right edges.
 
-### Pipeline (single images)
+#### Image Binarization
 
-#### 1. Example of a distortion-corrected image.
+This part deals with converting image into a binary image with lane lines detected. This part is critical as all other steps that follow are highly dependent on this step. For binarization, sobel gradients along with yellow and white line detection were used together.
 
-After camera calibration, I used the distortion coefficients and camera matrix to undistort the road images. It is hard to notice the corrected distortion in the image below except on the extreme left and right:  
+Sobel gradient in x and y direction is found and the magnitude of it along with angle is calculated and suitable limits for threshold were applied for obtaining good binarized image which captures lane lines exclusively as much as possible
 
-![alt text][image2]
+The binarized image is given below:
 
-#### 2. Binarization of image using colour and gradient thresholds
-
-Coming up with a good threshold for binarizing the image is a very crucial task because the whole pipeline depends on it.
-
-The code for this step is contained in the "**Image Binarization**" code cell of the IPython notebook `Advanced Lane Detection.ipynb`
-
-For detecting yellow lines, I used a threshold on V channel in the HSV color space. For white lines, equalizing the histrogram really helped. Lastly, I used a Sobel mask to detect the gradients of lines. I combined the output of all of the above thresholding methods to get the following output:
-
-
-![alt text][image3]
+![img_normal](https://image.ibb.co/kBd2P5/binarize.png)
 
 #### 3. Perpective transform
 
