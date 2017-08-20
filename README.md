@@ -31,7 +31,7 @@ This step is for converting the distorted images of camera into undistorted orig
 The undistortion requires object points and images. Image points are taken from detected corners whereas object points are selected as 3x3 grid. These values are then passed to cv2.calibrateCamera() for obtaining calibration matrix. Then, the parameters obtained from the function were fed into cv2.undistort() function for undistorting images. The values of camera calibration were stored in a pickle file to prevent processing of them everytime.
 
 This image is before it is undistorted
-![img_normal](https://image.ibb.co/jiRYWk/before_persp.png)
+![img_normal](https://image.ibb.co/jiRYWk/before_persp.png){:height="36px" width="36px"}.
 
 After undistorting, the output is:
 ![img_normal](https://image.ibb.co/kO82P5/Undistorted_Image.png)
