@@ -33,7 +33,7 @@ The undistortion requires object points and images. Image points are taken from 
 
 This image is before it is undistorted
 
-<a href="url"><img src="https://image.ibb.co/jiRYWk/before_persp.png" align="center" height="200" width="200"  magin: auto></a>
+<a href="url"><img src="https://image.ibb.co/jiRYWk/before_persp.png" align="center" height="250" width="200" ></a>
 
 After undistorting, the output is:
 
