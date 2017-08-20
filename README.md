@@ -17,14 +17,6 @@ The Final Video is given below:
 
 [![IMAGE ALT TEXT](http://img.youtube.com/vi/k3ullb36rHM/0.jpg)](https://youtu.be/k3ullb36rHM)  
 
-
-<a href="url"><img src="https://image.ibb.co/kO82P5/Undistorted_Image.png" align="center" height="200" width="200" ></a>
-<a href="url"><img src="https://image.ibb.co/mt0hP5/after_persp.png" align="center" height="200" width="200" ></a>
-<a href="url"><img src="https://image.ibb.co/jiRYWk/before_persp.png" align="center" height="200" width="200" ></a>
-<a href="url"><img src="https://image.ibb.co/kBd2P5/binarize.png" align="center" height="200" width="200" ></a>
-<a href="url"><img src="https://image.ibb.co/cw7kcQ/output_7.png" align="center" height="200" width="200" ></a>
-<a href="url"><img src="https://image.ibb.co/bMc7rk/sliding.png" align="center" height="200" width="200" ></a>
-
 ### Camera Calibration and Undistorting
 
 This step is for converting the distorted images of camera into undistorted original images. For this, we first calibrate the camera matrix using chessboard images and use the calculated matrices for obtaining undistorted imageds.
@@ -33,11 +25,11 @@ The undistortion requires object points and images. Image points are taken from 
 
 This image is before it is undistorted
 
-<a href="url"><img src="https://image.ibb.co/jiRYWk/before_persp.png" align="center" height="250" width="200" ></a>
+<a href="url"><img src="https://image.ibb.co/jiRYWk/before_persp.png" align="center" height="200" width="250" ></a>
 
 After undistorting, the output is:
 
-<a href="url"><img src="https://image.ibb.co/kO82P5/Undistorted_Image.png" align="center" height="200" width="200" ></a>
+<a href="url"><img src="https://image.ibb.co/kO82P5/Undistorted_Image.png" align="center" height="200" width="250" ></a>
 
 Notice that the difference is less and is observed only at left and right edges.
 
@@ -49,42 +41,36 @@ Sobel gradient in x and y direction is found and the magnitude of it along with 
 
 The binarized image is given below:
 
-![img_normal](https://image.ibb.co/kBd2P5/binarize.png)
+<a href="url"><img src="https://image.ibb.co/kBd2P5/binarize.png" align="center" height="200" width="250" ></a>
 
-#### 3. Perpective transform
+#### Perpective
 
-The code for my perspective transform includes a function called `perpective()`, which appears in "Perpective View" cell of the notebook.  The `perpective()` function takes as inputs an image (`img`), as well as source (`src`) and destination (`dst`) points.  I chose the following source and destination points:
+This part of the project deals with transforming the image to bird-eye viee using perspective transform. The cv2 functions for this are:
 
-```python
-src = np.float32([[w, h-15], [0, h-15], [546, 460], [732, 460]])
-dst = np.float32([[w, h], [0, h], [0, 0], [w, 0]])
-```
+cv2.getPerspectiveTransform and cv2.warpPerspective.
 
+The perspective image is:
 
-I verified that my perspective transform was working as expected by visualizing a test image and its warped counterpart.
+<a href="url"><img src="https://image.ibb.co/mt0hP5/after_persp.png" align="center" height="200" width="250" ></a>
 
-![alt text][image4]
+#### Fitting lane lines with polynomial
 
-#### 4. Fitting lane lines with polynomial
+This is done by identifying pixels for which polynomial is to be fit. Then, the pixels were fit with second degree polynnomial. In-case of video, the fit is approximated by previous fits.
 
-When fitting polynomials to lane lines, there are 2 cases:
-- New image - I use the `sliding_windows()` function to find the peak locations of the histogram of the binary image, and then slide two windows towards the upper side of the image, deciding which pixels belong to the lane line.
-- In case of video processing, we can limit our search in the neighbourhood of previously detected lane lines. I do this using the method `approx_by_previous_fits()`
+For identifying pixels, histogram is used.
 
-![alt text][image5]
+The output of this step is:
 
-#### 5. Radius of curvature and offset from center calculation
-
-The offset from the lane center can be computed assuming that the camera is fixed and mounted in the midpoint of the car roof. In this case, we can approximate the car's deviation from the lane center as the distance between the center of the image and the midpoint at the bottom of the image of the two lane-lines detected. This is done using the method `compute_offset_from_center()`.  
-The radius of curvature can be computed using the coefficients of 2nd degree polynomial fitted to the lane lines. I did this in the method `curvature_meter()`.
-
-#### 6. Final Output
-
-The whole pipeline produces the following image:
-Other images can be found in the `output_images` directory.  
-
-![alt text][image6]
+<a href="url"><img src="https://image.ibb.co/bMc7rk/sliding.png" align="center" height="200" width="200" ></a>
 
 
-### Discussion
-One of the main issues that I see with the approaches in this project is the selection of parameters by hand for these specific road images. This clearly makes this approach hard to generalize. The pipeline is very fragile to image changes such as variations in brightness, contrast etc. as the thresholding parameters have been hardcoded and the whole pipeline depends heavily on the binarized image.  
+#### Lane curvature and offset from center
+
+For this computation, it is assumed the frame in the mid of the image is the mid of vehicle and the deviation of it from detected lane center is offset from center. In a similar way, from the coefficients of the polynomial which was fit, the lane curvature was found.
+
+The output after all these steps is:
+
+<a href="url"><img src="https://image.ibb.co/cw7kcQ/output_7.png" align="center" height="200" width="200" ></a>
+
+### Conclusion
+The Project is challenging compared to previous projects due to the number of steps involved and also the calibration of the parameter by hand. There are a various number of parameters which needed hand calibration. 
