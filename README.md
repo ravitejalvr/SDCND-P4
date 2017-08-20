@@ -19,7 +19,7 @@ The Final Video is given below:
 
 [//]: # (Image References)
 
-[(https://ibb.co/c2CU45?raw=true)]
+![img_normal](https://ibb.co/c2CU45?raw=true)
 [(https://ibb.co/hYOrHQ?raw=true)]
 [(https://ibb.co/hDAtWk?raw=true)]
 [(https://ibb.co/iBxU45?raw=true)]
