@@ -18,7 +18,9 @@ The Final Video is given below:
 [![IMAGE ALT TEXT](http://img.youtube.com/vi/k3ullb36rHM/0.jpg)](https://youtu.be/k3ullb36rHM)  
 
 
-![img_normal](https://image.ibb.co/kO82P5/Undistorted_Image.png =100x20)
+
+<img src="https://image.ibb.co/kO82P5/Undistorted_Image.png" alt="Undistorted" style="width: 200px;"/>
+![img_normal](https://image.ibb.co/kO82P5/Undistorted_Image.png)
 ![img_normal](https://image.ibb.co/mt0hP5/after_persp.png)
 ![img_normal](https://image.ibb.co/jiRYWk/before_persp.png)
 ![img_normal](https://image.ibb.co/kBd2P5/binarize.png)
