@@ -19,13 +19,12 @@ The Final Video is given below:
 
 
 
-<img src="https://image.ibb.co/kO82P5/Undistorted_Image.png" alt="Undistorted" style="width: 200px;"/>
-![img_normal](https://image.ibb.co/kO82P5/Undistorted_Image.png)
-![img_normal](https://image.ibb.co/mt0hP5/after_persp.png)
-![img_normal](https://image.ibb.co/jiRYWk/before_persp.png)
-![img_normal](https://image.ibb.co/kBd2P5/binarize.png)
-![img_normal](https://image.ibb.co/cw7kcQ/output_7.png)
-![img_normal](https://image.ibb.co/bMc7rk/sliding.png)
+<img src="https://image.ibb.co/kO82P5/Undistorted_Image.png" alt="Undistorted" style="width: 50px;"/>
+<img src="https://image.ibb.co/mt0hP5/after_persp.png" alt="Undistorted" style="width: 50px;"/>
+<img src="https://image.ibb.co/jiRYWk/before_persp.png" alt="Undistorted" style="width: 50px;"/>
+<img src="https://image.ibb.co/kBd2P5/binarize.png" alt="Undistorted" style="width: 50px;"/>
+<img src="https://image.ibb.co/cw7kcQ/output_7.png)" alt="Undistorted" style="width: 50px;"/>
+<img src="https://image.ibb.co/bMc7rk/sliding.png)" alt="Undistorted" style="width: 50px;"/>
 
 ### Camera Calibration and Undistorting
 
