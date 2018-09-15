@@ -73,4 +73,7 @@ The output after all these steps is:
 <a href="url"><img src="https://image.ibb.co/cw7kcQ/output_7.png" align="center" height="200" width="200" ></a>
 
 ### Conclusion
-The Project is challenging compared to previous projects due to the number of steps involved and also the calibration of the parameter by hand. There are a various number of parameters which needed hand calibration. 
+The Project is challenging compared to previous projects due to the number of steps involved and also the calibration of the parameter by hand. There are a various number of parameters which needed hand calibration. The values are hardcoded and the pipeline relies extensively on the tuning of these parameters. 
+
+A Deep Learning based method, which can directly extract the features and select the drivable path, would be a better solution to this issue of manually hard-coding the values.
+
